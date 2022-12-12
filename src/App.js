@@ -178,8 +178,10 @@ function App() {
           <h2>Lecturer's Note:</h2>
           <p>
             Please note this is intended as a basic prototype of the final
-            digital artefact for my MA Thesis. I have set up a sample task where
-            users can log in, add, delete and check off sub-tasks.
+            digital artefact for my MA Thesis. I have set up a sample project
+            where users can log in, add, delete and check off sub-tasks. I have
+            also created one sample sub-task but users can completely add and
+            delete their own tasks at this point.
           </p>
           <p> User: {userInfo.displayName}</p>
           <p> ID: {userInfo.uid}</p>
