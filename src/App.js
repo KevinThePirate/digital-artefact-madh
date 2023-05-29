@@ -11,6 +11,7 @@ import {
   onSnapshot,
   updateDoc,
   addDoc,
+  where,
 } from "firebase/firestore";
 import {
   signInWithPopup,
@@ -36,6 +37,7 @@ import MoodTrackingSection from "./components/MoodTracking/MoodTrackingSection";
 import VirtualPet from "./components/VirtualPet/VirtualPet";
 import AddItem from "./components/AddItem";
 import { Card } from "@mui/material";
+import AnalysisTest from "./components/AnalysisTest";
 
 function App() {
   //const [user, setUser] = useState({});
@@ -46,13 +48,21 @@ function App() {
   const [standHabits, setStandHabits] = useState([]);
   const [userExists, setUserExists] = useState(false);
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const close = () => setModalOpen(false);
+  const open = () => setModalOpen(true);
+
   let localItemArray = [];
   let testArr = [];
   const getUserData = () => {
     //console.log("Ran getUserData()");
     //console.log(userInfo);
     userItemRef = collection(db, `users/${userInfo.uid}/todos`);
-    const sortedItemsQuery = query(userItemRef, orderBy("index"));
+    const sortedItemsQuery = query(
+      userItemRef,
+      orderBy("index"),
+      where("completed", "==", false)
+    );
     /*onSnapshot(qu, (snapshot) => {
       let books = [];
       snapshot.docs.forEach((doc) => {
@@ -175,22 +185,25 @@ function App() {
     <div className="App">
       {userInfo.uid ? (
         <div style={{ color: "white" }}>
-          <h2>Lecturer's Note:</h2>
-          <p>
-            Please note this is intended as a basic prototype of the final
-            digital artefact for my MA Thesis. I have set up a sample project
-            where users can log in, add, delete and check off sub-tasks. I have
-            also created one sample sub-task but users can completely add and
-            delete their own tasks at this point.
-          </p>
           <p> User: {userInfo.displayName}</p>
           <p> ID: {userInfo.uid}</p>
-          <Card
-            style={{
-              width: "30%",
-              margin: "auto",
-              backgroundColor: "#64c4c3",
-            }}>
+
+          <div>
+            <button onClick={open} id="add-button">
+              Add Task To This Project
+            </button>
+            {modalOpen && (
+              <div>
+                <AddItem
+                  user={userInfo}
+                  getUserData={getUserData}
+                  userItems={userItems}
+                  modalOpen={modalOpen}
+                  handleClose={close}
+                  standHabits={standHabits}
+                />
+              </div>
+            )}
             <HabitSection
               userInfo={userInfo}
               userItems={userItems}
@@ -202,7 +215,12 @@ function App() {
               xpUp={petRef.current}
               id="Habit-Section"
             />
-          </Card>
+          </div>
+          <AnalysisTest
+            userInfo={userInfo}
+            userItems={userItems}
+            getUserData={getUserData}
+          />
         </div>
       ) : (
         <SignIn signInWithGoogle={signInWithGoogle} />

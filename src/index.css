@@ -271,8 +271,11 @@ li {
   margin: 5px;
   text-align: center;
 }
-#Habit-Section {
+.task-block {
   background-color: #64c4c3;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 960px) {
@@ -287,4 +290,8 @@ li {
     color: #ff9d00;
     font-size: 250%;
   }
+}
+.radio-1 {
+  border: 5px solid red;
+  background-image: url(http://i.imgur.com/lXzJ1eB.png);
 }

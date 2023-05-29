@@ -6,26 +6,11 @@ import {
   FieldValue,
   Timestamp,
   getDocs,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
 import Backdrop from "./Backdrop";
-const taskTypes = [
-  "",
-  "Deep Work",
-  "Shallow Work",
-  "Chores",
-  "Learning",
-  "Mind Care",
-  "Body Care",
-  "People",
-  "Next Week",
-  "Reading",
-  "Writing",
-  "Family",
-  "Home",
-  "Travel",
-  "Other",
-];
 
 const dropIn = {
   hidden: {
@@ -50,11 +35,10 @@ const dropIn = {
 
 //let standHabits = ["Walk", "Run", "Water", "Meditate"];
 
-export default function AddItem(props, { handleClose, text }) {
+export default function AddSubLevelTask(props) {
   const [title, setTitle] = React.useState("");
-  const [category, setCategory] = React.useState("");
 
-  const [addingHabits, setAddingHabbits] = useState([]);
+  /*const [addingHabits, setAddingHabbits] = useState([]);
 
   const checkboxTogglerValue = (id) => {
     console.log(id.target.checked);
@@ -70,12 +54,12 @@ export default function AddItem(props, { handleClose, text }) {
       }
     }
     console.log(addingHabits);
-  };
+  }; */
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(e.target);
     console.log({ title });
-    console.log(addingHabits);
+    /*console.log(addingHabits);
     addingHabits.forEach((habit) => {
       console.log(habit);
       addDoc(collection(db, `users/${props.user.uid}/todos`), {
@@ -84,23 +68,42 @@ export default function AddItem(props, { handleClose, text }) {
 
         index: props.userItems.length + 1,
       });
-    });
+    }); */
     if (title !== "") {
-      await addDoc(collection(db, `users/${props.user.uid}/todos`), {
-        title,
-        createdAt: new Date(),
-        completed: false,
-        subtasks: [],
-        category: category,
-        index: props.userItems.length + 1,
-      });
+      console.log(props.item.id);
+      console.log(typeof props.item.subtasks);
+      if (props.item.subtasks) {
+        await updateDoc(
+          doc(db, `users/${props.user.uid}/todos/${props.item.id}`),
+          {
+            subtasks: [
+              ...props.item.subtasks,
+              {
+                title,
+                completed: false,
+              },
+            ],
+          }
+        );
+      } else {
+        await updateDoc(
+          doc(db, `users/${props.user.uid}/todos/${props.item.id}`),
+          {
+            subtasks: [
+              {
+                title,
+                completed: false,
+              },
+            ],
+          }
+        );
+      }
       setTitle("");
     }
     //setAddingHabbits([]);
     props.getUserData();
     props.handleClose();
   };
-
   return (
     <Backdrop onClick={props.handleClose}>
       <motion.div
@@ -112,19 +115,14 @@ export default function AddItem(props, { handleClose, text }) {
         exit="exit">
         <form onSubmit={handleSubmit}>
           <div className="box-space">
-            <div className="dropdown">
-              <label htmlFor={"task-selector"} className="checkbox-label">
-                What Type Of Task Is This?
-              </label>
-              <select
-                id="task-selector"
-                name="task-selector"
-                onChange={(e) => setCategory(e.target.value)}>
-                {taskTypes.map((item) => (
-                  <option value={item}>{item}</option>
-                ))}
-              </select>
-            </div>
+            {props.standHabits.map((item) => (
+              <div className="checkboxes">
+                <input key={`${item}-checkbox`} type="checkbox" name={item} />
+                <label htmlFor={item} className="checkbox-label">
+                  {item}
+                </label>
+              </div>
+            ))}
           </div>
           <div className="input_container">
             <input
