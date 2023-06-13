@@ -71,17 +71,21 @@ export default function LineItem(props) {
   };
   useEffect(() => styling());
   return (
-    <div className={classList}>
-      {props.item.title}
-      <button onClick={deleteSelf}>X</button>
-      <button
-        onClick={() => {
-          open();
-          setStoredItem(props.task);
-        }}
-        id="add-button">
-        ✓
-      </button>
+    <tr className={classList}>
+      <td style={{ width: "70%" }}>{props.item.title}</td>
+      <td style={{ width: "30%" }}>
+        <button
+          className="check-button"
+          onClick={() => {
+            open();
+            setStoredItem(props.task);
+          }}>
+          ✓
+        </button>
+        <button className="x-button" onClick={deleteSelf}>
+          X
+        </button>
+      </td>
       {modalOpen && (
         <div>
           <DataSubmissionForm
@@ -95,6 +99,6 @@ export default function LineItem(props) {
           />
         </div>
       )}
-    </div>
+    </tr>
   );
 }

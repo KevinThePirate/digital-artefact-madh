@@ -4,6 +4,10 @@ import AddItem from "./AddItem";
 import LineItem from "./LineItem";
 import AddSubLevelTask from "./AddSubLevelTask";
 import { db } from "../firebase";
+import { Accordion } from "@mui/material";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
 import {
   collection,
   getDocs,
@@ -54,51 +58,79 @@ export default function HabitSection(props) {
     setModalOpen(true);
   };
 
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
   return (
     <div>
-      {props.userItems.map((task) => (
-        <div
+      {props.userItems.map((task, index) => (
+        <Accordion
+          expanded={expanded === index}
+          onChange={handleChange(index)}
           className="task-block"
           key={task.id}
           item={task}
           handleDelete={props.handleDelete}
           getUserData={props.getUserData}>
-          <button onClick={() => props.handleDelete(task.id)}>
-            Delete Task
-          </button>
-          <button
-            onClick={async () => {
-              await updateDoc(
-                doc(db, `users/${props.userInfo.uid}/todos`, task.id),
-                {
-                  completed: true,
-                }
-              );
-            }}>
-            Complete Task
-          </button>
-          <h2>{task.title}</h2>
-          <p>Item ID: {task.id} </p>
-          <button
-            onClick={() => {
-              open();
-              setStoredItem(task);
-            }}
-            id="add-button">
-            Add Sub-Task To This Project
-          </button>
-          {task.subtasks &&
-            task.subtasks.map((item) => (
-              <LineItem
-                user={props.userInfo}
-                task={task}
-                item={item}
-                handleDelete={props.handleDelete}
-                handleCheckIn={props.handleCheckIn}
-                getUserData={props.getUserData}
-              />
-            ))}
-        </div>
+          <AccordionSummary
+            expandIcon="↓"
+            aria-controls="panel2bh-content"
+            id="panel2bh-header">
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>
+              {task.title}
+            </Typography>
+            {window.innerWidth > 900 && (
+              <Typography sx={{ color: "text.secondary" }}>
+                {task.category && task.category}
+              </Typography>
+            )}
+          </AccordionSummary>
+          <AccordionDetails>
+            <h2>{task.title}</h2>
+            {/*<p>Item ID: {task.id} </p>*/}
+            <button
+              onClick={() => {
+                open();
+                setStoredItem(task);
+              }}
+              className="add-button">
+              Add Sub-Task To This Project
+            </button>
+            <table className="task-table">
+              {task.subtasks &&
+                task.subtasks.map((item) => (
+                  <LineItem
+                    user={props.userInfo}
+                    task={task}
+                    item={item}
+                    handleDelete={props.handleDelete}
+                    handleCheckIn={props.handleCheckIn}
+                    getUserData={props.getUserData}
+                  />
+                ))}
+            </table>
+            <button
+              className="complete-button"
+              onClick={async () => {
+                await updateDoc(
+                  doc(db, `users/${props.userInfo.uid}/todos`, task.id),
+                  {
+                    completed: true,
+                  }
+                );
+              }}>
+              Complete Task
+            </button>
+            <button
+              className="delete-button"
+              onClick={() => props.handleDelete(task.id)}>
+              Delete Task
+            </button>
+          </AccordionDetails>
+        </Accordion>
       ))}
       {modalOpen && (
         <div>

@@ -1,23 +1,25 @@
 @import-normalize;
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500;1,700;1,900&display=swap");
 
 :root {
-  --dark: #5093b3;
+  --dark: #232126;
   --light: #eeeeee;
-  --gradient: linear-gradient(10deg, #ffaa00, #ff6a00);
-  --gradient2: linear-gradient(15deg, #04ea00, #00d17d);
-  --gradient3: linear-gradient(15deg, #b648ff, #ef5dff);
+  --colour1: #fffffe;
+  --red: #d95284;
+  --grey: #404040;
+  --blue: #88a2f2;
+  --green: #a4f280;
   font-size: 1rem;
 }
 
 * {
   box-sizing: border-box;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
   background: var(--dark);
-  font-family: "Montserrat", sans-serif;
   height: 100%;
 }
 
@@ -33,14 +35,12 @@ h1 {
   color: #ff9d00;
   font-size: 175%;
   font-weight: 400;
-  font-family: "Montserrat", sans-serif;
 }
 
 h2 {
   font-weight: 500;
   font-size: 150%;
   letter-spacing: 0;
-  font-family: "Montserrat", sans-serif;
 }
 
 h3 {
@@ -49,7 +49,6 @@ h3 {
   font-weight: 700;
   font-size: 2rem;
   letter-spacing: 1px;
-  font-family: "Montserrat", sans-serif;
   padding: 2rem 0 1.5rem 0;
   margin: 0;
   text-transform: capitalize;
@@ -95,34 +94,58 @@ button {
   letter-spacing: 1.25px;
   cursor: default;
   margin: 5px;
-  margin-bottom: 4rem;
-  background-color: #f8d49a;
+
+  background-color: #0f0e17;
+  color: white;
 }
 #add-button {
-  background-color: #f7e6ca;
+  background-color: var(--blue);
+  color: var(--dark);
+  padding: 1rem;
+  height: auto;
+  font-size: 28px;
+  font-weight: 900;
+}
+.complete-button {
+  background-color: var(--green);
+  color: var(--dark);
+}
+.delete-button {
+  background-color: var(--red);
+}
+.check-button {
+  background-color: #f8f8f8;
+  color: var(--dark);
+}
+.x-button {
+  background-color: var(--dark);
+  color: var(--light);
 }
 .backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
-  background: #5093b3d9;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #0f0e17;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .modal {
-  width: clamp(10%, 25%, 90%);
-  height: min(20vh, 300px);
+  width: clamp(400px, 60vw, 600px);
+  height: auto;
   margin: auto;
-  padding: 0 2rem;
+  padding: 2rem;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #64c4c3;
+  background-color: var(--colour1);
+  color: black !important;
 }
 .pink {
   color: #c273ff;
@@ -182,7 +205,7 @@ li {
   margin: 0;
 }
 
-ul {
+/*ul {
   position: fixed;
   bottom: 0.5rem;
   right: 0;
@@ -191,7 +214,7 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-}
+} */
 
 .bottom {
   justify-content: flex-end;
@@ -223,10 +246,12 @@ li {
 }
 
 .add-button {
-  padding: 0 1rem;
-  margin: 2rem auto auto 0;
-  background: var(--gradient2);
+  background-color: var(--blue);
   color: var(--dark);
+  padding: 1rem;
+  height: auto;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .close {
@@ -254,14 +279,16 @@ li {
 
 .box-space {
   width: 100%;
-  height: 40%;
   margin: 5px;
   text-align: left;
   padding: 0;
 }
 
 .checkbox-label {
-  font-size: 0.5em;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  letter-spacing: 0.25px;
 }
 .checkboxes {
   padding: 5px;
@@ -272,10 +299,87 @@ li {
   text-align: center;
 }
 .task-block {
-  background-color: #64c4c3;
+  background-color: red;
   width: 50%;
   margin: auto;
   margin-bottom: 10px;
+  padding: 10px;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+  background-color: var(--grey) !important;
+  /*border: 5px solid white !important; */
+  border-radius: 15px !important;
+  color: white !important;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root.Mui-expanded {
+  margin: auto !important;
+  margin-bottom: 16px !important;
+  color: white !important;
+}
+.MuiTypography-root,
+.MuiAccordionSummary-expandIconWrapper {
+  color: white !important;
+}
+/*.Mui-expanded {
+  background-color: #a7a9be !important;
+}*/
+
+.input_container {
+  margin: 0;
+}
+.task-table {
+  margin: auto;
+  width: 50%;
+}
+table tr td button {
+  height: 2rem;
+  width: 2rem;
+}
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--grey);
+  z-index: 90;
+  height: 50px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+nav li {
+  display: inline;
+}
+nav li a {
+  color: white;
+  text-decoration: underline;
+  padding: 10px;
+}
+nav ul {
+  text-align: right;
+  align-self: center;
+  display: inline;
+  position: absolute;
+  right: 0;
+}
+nav h1 {
+  text-align: left;
+  display: inline;
+  font-size: clamp(0.5rem, 2.5vw, 2rem);
+  padding: 10px;
+}
+.main-section {
+  position: relative;
+  top: 50px;
+}
+#footer-message {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  opacity: 0.5;
+  width: 99%;
+  z-index: 1;
 }
 
 @media screen and (min-width: 960px) {

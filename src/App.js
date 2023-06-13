@@ -38,6 +38,7 @@ import VirtualPet from "./components/VirtualPet/VirtualPet";
 import AddItem from "./components/AddItem";
 import { Card } from "@mui/material";
 import AnalysisTest from "./components/AnalysisTest";
+import Header from "./components/Header";
 
 function App() {
   //const [user, setUser] = useState({});
@@ -184,13 +185,13 @@ function App() {
   return (
     <div className="App">
       {userInfo.uid ? (
-        <div style={{ color: "white" }}>
-          <p> User: {userInfo.displayName}</p>
-          <p> ID: {userInfo.uid}</p>
-
-          <div>
+        <div style={{ color: "black" }}>
+          {/*<p> User: {userInfo.displayName}</p>
+          <p> ID: {userInfo.uid}</p> */}
+          <Header />
+          <div className="main-section">
             <button onClick={open} id="add-button">
-              Add Task To This Project
+              Add Task Or Project
             </button>
             {modalOpen && (
               <div>
@@ -216,11 +217,6 @@ function App() {
               id="Habit-Section"
             />
           </div>
-          <AnalysisTest
-            userInfo={userInfo}
-            userItems={userItems}
-            getUserData={getUserData}
-          />
         </div>
       ) : (
         <SignIn signInWithGoogle={signInWithGoogle} />

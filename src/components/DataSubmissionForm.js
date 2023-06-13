@@ -105,7 +105,9 @@ export default function DataSubmissionForm(props) {
         <form onSubmit={handleSubmit}>
           <div className="input_container">
             <div className="time-input">
-              <label for="appt-time">Time Of Completion: </label>
+              <label for="appt-time">
+                <h4>Time Of Completion:</h4>
+              </label>
               <input
                 id="appt-time"
                 type="time"
@@ -114,7 +116,9 @@ export default function DataSubmissionForm(props) {
                 required
               />
             </div>
+            <br />
             <div className="mood-input">
+              <h4>How Did You Feel When You Finished This Task?</h4>
               <div>
                 <input
                   type="radio"
@@ -122,6 +126,7 @@ export default function DataSubmissionForm(props) {
                   name="radio"
                   value="Good"
                   onChange={(e) => setMoodOnCompletion(e.target.value)}
+                  required
                 />
                 <label for="Good">Good</label>
 
@@ -131,6 +136,7 @@ export default function DataSubmissionForm(props) {
                   name="radio"
                   value="Meh"
                   onChange={(e) => setMoodOnCompletion(e.target.value)}
+                  required
                 />
                 <label for="Meh">Meh</label>
 
@@ -140,6 +146,7 @@ export default function DataSubmissionForm(props) {
                   name="radio"
                   value="Bad"
                   onChange={(e) => setMoodOnCompletion(e.target.value)}
+                  required
                 />
                 <label for="Bad">Bad</label>
                 <br />
@@ -149,6 +156,7 @@ export default function DataSubmissionForm(props) {
                   name="radio"
                   value="Energized"
                   onChange={(e) => setMoodOnCompletion(e.target.value)}
+                  required
                 />
                 <label for="Energized">Energized</label>
 
@@ -158,6 +166,7 @@ export default function DataSubmissionForm(props) {
                   name="radio"
                   value="Neutral"
                   onChange={(e) => setMoodOnCompletion(e.target.value)}
+                  required
                 />
                 <label for="Neutral">Neutral</label>
 
@@ -167,6 +176,7 @@ export default function DataSubmissionForm(props) {
                   name="radio"
                   value="Tired"
                   onChange={(e) => setMoodOnCompletion(e.target.value)}
+                  required
                 />
                 <label for="Tired">Tired</label>
                 <br />
@@ -176,6 +186,7 @@ export default function DataSubmissionForm(props) {
                   name="radio"
                   value="Accomplished"
                   onChange={(e) => setMoodOnCompletion(e.target.value)}
+                  required
                 />
                 <label for="Accomplished">Accomplished</label>
 
@@ -185,13 +196,14 @@ export default function DataSubmissionForm(props) {
                   name="radio"
                   value="Frustrated"
                   onChange={(e) => setMoodOnCompletion(e.target.value)}
+                  required
                 />
                 <label for="Frustrated">Frustrated</label>
               </div>
             </div>
           </div>
           <div className="btn_container">
-            <button>Add Task</button>
+            <button>Confirm</button>
           </div>
         </form>
         <button onClick={props.handleClose}>Cancel</button>
