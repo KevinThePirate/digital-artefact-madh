@@ -16,7 +16,16 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
-
+import { styled } from "@mui/material/styles";
+const MyAccordian = styled(Accordion)(({ theme }) => ({
+  backgroundColor: "#404040",
+  margin: "auto",
+  marginBottom: "10px",
+  "&.Mui-expanded": {
+    margin: "auto",
+    marginBottom: "10px",
+  },
+}));
 export default function HabitSection(props) {
   let userItemRef = collection(db, `users/${props.userInfo.uid}/todos`);
   const [userSubItems, setUserSubItems] = useState([]);
@@ -67,7 +76,7 @@ export default function HabitSection(props) {
   return (
     <div>
       {props.userItems.map((task, index) => (
-        <Accordion
+        <MyAccordian
           expanded={expanded === index}
           onChange={handleChange(index)}
           className="task-block"
@@ -130,7 +139,7 @@ export default function HabitSection(props) {
               Delete Task
             </button>
           </AccordionDetails>
-        </Accordion>
+        </MyAccordian>
       ))}
       {modalOpen && (
         <div>
