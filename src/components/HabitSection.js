@@ -98,7 +98,8 @@ export default function HabitSection(props) {
             )}
           </AccordionSummary>
           <AccordionDetails>
-            <h2>{task.title}</h2>
+            {window.innerWidth > 900 && <h2>{task.title}</h2>}
+
             {/*<p>Item ID: {task.id} </p>*/}
             <button
               onClick={() => {

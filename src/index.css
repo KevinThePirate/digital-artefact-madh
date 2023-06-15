@@ -39,7 +39,7 @@ h1 {
 
 h2 {
   font-weight: 500;
-  font-size: 150%;
+  font-size: clamp(50%, 150%, 200%);
   letter-spacing: 0;
 }
 
@@ -395,7 +395,8 @@ nav h1 {
     font-size: 250%;
   }
 }
-.radio-1 {
-  border: 5px solid red;
-  background-image: url(http://i.imgur.com/lXzJ1eB.png);
+@media screen and (max-width: 800px) {
+  .task-block {
+    width: 90%;
+  }
 }
