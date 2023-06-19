@@ -77,7 +77,7 @@ const findCorrelationsWithTimeframes = (data) => {
     for (let j = 0; j < moods.length; j++) {
       const mood = moods[j];
       const count = moodCounts[mood];
-      if (count > maxCount) {
+      if (count >= maxCount) {
         maxCount = count;
         mostCommonMood = mood;
       }
@@ -252,22 +252,22 @@ exports.sendEmailToUsers = functions.pubsub
             if (info.morning !== null) {
               infoString += `in the <u>Morning</u>, you 
               tend to rate yourself as 
-              feeling <b>${info["morning"]}.</b>`;
+              feeling <b>${info["morning"]}. </b>`;
             }
             if (info.afternoon !== null) {
               infoString += `In the <u>Afternoon</u>, you 
               tend to rate yourself as 
-              feeling <b>${info["afternoon"]}.</b>`;
+              feeling <b>${info["afternoon"]}. </b>`;
             }
             if (info.evening !== null) {
               infoString += `In the <u>Evening</u>, you 
               tend to rate yourself as 
-              feeling <b>${info["evening"]}.</b>`;
+              feeling <b>${info["evening"]}. </b>`;
             }
             if (info.night !== null) {
               infoString += `At <u>Night</u>, you 
               tend to rate yourself as 
-              feeling <b>${info["night"]}.</b>`;
+              feeling <b>${info["night"]}. </b>`;
             }
           }
           admin
@@ -450,7 +450,7 @@ exports.sendEmailToUsers = functions.pubsub
                                           </p>
                                           <p>
                                           What we have noticed is that: 
-                                          in the ${infoString}
+                                          ${infoString}
                                           </p>
                                           <p> From this information, 
                                           we hope that you can get 

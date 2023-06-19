@@ -72,7 +72,7 @@ export default function LineItem(props) {
   useEffect(() => styling());
   return (
     <tr className={classList}>
-      <td style={{ width: "70%" }}>{props.item.title}</td>
+      <td style={{ width: "70%", color: "white" }}>{props.item.title}</td>
       <td style={{ width: "30%" }}>
         <button
           className="check-button"
