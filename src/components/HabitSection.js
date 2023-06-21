@@ -107,7 +107,7 @@ export default function HabitSection(props) {
                 setStoredItem(task);
               }}
               className="add-button">
-              Add Sub-Task To This Project
+              Add Task To This Project
             </button>
             <table className="task-table">
               {task.subtasks &&

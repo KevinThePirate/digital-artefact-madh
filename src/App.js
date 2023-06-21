@@ -191,7 +191,7 @@ function App() {
           <Header />
           <div className="main-section">
             <button onClick={open} id="add-button">
-              Add Task Or Project
+              Add Project
             </button>
             {modalOpen && (
               <div>
