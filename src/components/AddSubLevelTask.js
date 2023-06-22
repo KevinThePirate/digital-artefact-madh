@@ -133,7 +133,7 @@ export default function AddSubLevelTask(props) {
             />
           </div>
           <div className="btn_container">
-            <button>Add SubTask</button>
+            <button>Add Task</button>
           </div>
         </form>
         <button onClick={props.handleClose}>Cancel</button>

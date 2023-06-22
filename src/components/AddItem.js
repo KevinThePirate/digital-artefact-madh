@@ -114,7 +114,7 @@ export default function AddItem(props, { handleClose, text }) {
           <div className="box-space">
             <div className="dropdown">
               <label htmlFor={"task-selector"} className="checkbox-label">
-                What Type Of Task Is This?
+                What Type Of Project Is This?
               </label>
               <select
                 id="task-selector"
@@ -135,7 +135,7 @@ export default function AddItem(props, { handleClose, text }) {
             />
           </div>
           <div className="btn_container">
-            <button>Add Task</button>
+            <button>Add Project</button>
           </div>
         </form>
         <button onClick={props.handleClose}>Cancel</button>

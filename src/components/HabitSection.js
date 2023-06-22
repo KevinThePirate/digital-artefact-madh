@@ -132,12 +132,12 @@ export default function HabitSection(props) {
                   }
                 );
               }}>
-              Complete Task
+              Complete Project
             </button>
             <button
               className="delete-button"
               onClick={() => props.handleDelete(task.id)}>
-              Delete Task
+              Delete Project
             </button>
           </AccordionDetails>
         </MyAccordian>

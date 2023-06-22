@@ -101,7 +101,7 @@ function App() {
           console.log("New User");
           setUserExists(true);
           addDoc(collection(db, `users/${re.user.uid}/todos`), {
-            title: "Email Lecturer",
+            title: "Sample Project",
             createdAt: new Date(),
             completed: false,
             index: 0,

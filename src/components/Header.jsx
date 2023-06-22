@@ -6,10 +6,10 @@ export default function Header() {
       {window.innerWidth > 450 && <h1> Kevin Smith Dissertation Study</h1>}
       <ul>
         <li>
-          <a href="#">Tutorial</a>
+          <a href="https://youtu.be/qZrA7FmiVis">Tutorial</a>
         </li>
         <li>
-          <a href="#">Contact Us</a>
+          <a href="mailto:smithkevin1100@gmail.com">Contact Us</a>
         </li>
       </ul>
     </nav>
