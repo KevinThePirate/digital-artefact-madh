@@ -97,7 +97,7 @@ function App() {
         console.log(userItems.length);
         console.log(re.user.metadata.creationTime);
         console.log(re.user.metadata.lastSignInTime);*/
-        if (re.user.metadata.creationTime === re.user.metadata.lastSignInTime) {
+        /*if (re.user.metadata.creationTime === re.user.metadata.lastSignInTime) {
           console.log("New User");
           setUserExists(true);
           addDoc(collection(db, `users/${re.user.uid}/todos`), {
@@ -106,7 +106,7 @@ function App() {
             completed: false,
             index: 0,
           });
-        }
+        }*/
         // console.log(re.user.uid);
         // console.log(`users/${re.user.uid}/todos`);
         // console.log({ userInfo });
